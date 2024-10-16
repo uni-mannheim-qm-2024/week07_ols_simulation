@@ -181,7 +181,7 @@ mfx_lm <- function (b, z) {
 ## use the function for the continuous model
 mfx_con <- mfx_lm(b_con, z_vals_con)
 
-## use the function for the continuous model
+## use the function for the categorical model
 mfx_cat <- mfx_lm(b_cat, z_vals_cat)
 ```
 
@@ -617,7 +617,7 @@ dim(S) # Check dimensions
 
 ## Step 3 - Choose interesting covariate values. Also known as: Set a scenario. {-}
 
-E.g., difference in voteshare Die Linke for East and West.
+E.g., difference in voteshare for Die Linke for East and West.
 
 
 Tip: double-check the ordering of coefficients first, to put the values in the correct order.
@@ -660,7 +660,7 @@ fd <- EV_combined[,1] - EV_combined[,2]
 
 ## Step 5 - Summarize Results {- .tabset} 
 
-Plot the expected values for west.
+Plot the expected values for west, east and the first differences.
 
 ### Base R {-}
 
@@ -674,6 +674,7 @@ hist(
   main = "",
   xlab = "Expected Values for the voteshare of Die Linke for districts in the west
      (With unemployment at its mean.)",
+  cex.lab = 0.6, cex.axis = 0.6, cex.main = 0.6, cex.sub = 0.6
 )
 
 # Get mean and quantiles. We use our quants_mean_fun from above.
@@ -696,6 +697,7 @@ hist(
   border = "white",
   xlab = "Expected Values for the voteshare of Die Linke for East
      (With unemployment at its mean.)",
+  cex.lab = 0.6, cex.axis = 0.6, cex.main = 0.6, cex.sub = 0.6
 )
 abline(v = c(quants_combined[, 1]),
        lty = 2,
@@ -723,6 +725,10 @@ quants_fd <- apply(as.matrix(fd), 2, quants_mean_fun)
 
 abline(v = quants_fd, lty = 2, col = viridis(4)[4])
 ```
+
+So far the scenarios were rather boring. Let's do something more exciting! We calculate expected values over a **range of unemployment**.
+
+**We go back to Step 3.**
 
 ### ggplot2 {-}
 
