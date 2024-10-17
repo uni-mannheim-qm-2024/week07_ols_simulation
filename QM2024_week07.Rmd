@@ -39,7 +39,7 @@ In other words, the goals are to:
 
 This is a very important lab session. You can benefit a lot if you work through it step by step at home and read the @King_et_al_2000 article again.
 
-But first we have a look at interaction effects - ones we missed last time and ones for this week.
+But first we have a look at more interaction effects.
 
 ------------------------------------------------------------------------
 
@@ -90,21 +90,6 @@ sapply(p_needed, require, character.only = TRUE)
 # depending on whether we want a html or pdf file
 stargazer_opt <- ifelse(knitr::is_latex_output(), "latex", "html")
 ```
-
-
-```{r load-data}
-dat1 <- read.csv("raw-data/income_fake_data.csv")
-
-glimpse(dat1)
-
-# making gender into dummies again
-
-dat1$female <- ifelse(dat1$gender == "female", 1,
-  ifelse(dat1$gender == "male", 0, NA)
-)
-
-```
-
 
 # Understanding Marginal Effects for Categorical and Continuous Moderators
 
